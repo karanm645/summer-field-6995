@@ -4,4 +4,8 @@ class Movie < ApplicationRecord
   has_many :actors, through: :actor_movie
 
   validates_presence_of :title, :creation_year, :genre
+
+  def order_actors
+    actors.order(:age)    
+  end
 end
