@@ -1,7 +1,15 @@
 <h1><%= @movie.title %></h1>
 <p>Year: <%= @movie.creation_year %></p>
 <p>Genre: <%= @movie.genre %></p>
+<p>Average Actor Age: <%= @movie.average_age %>
 
 <% @actors.each do |actor| %>
   <p>Actor Name:<%= actor.name %></p>
+<% end %>
+
+<%= form_with url: actor_movies_path, method: :post, local: true do |f| %>
+  <%= f.label "Name:" %>
+  <%= f.text_field :new_actor %>
+  <%= f.submit "Submit" %>
+  <%= f.hidden_field :id, :value => @movie.id %>
 <% end %>
